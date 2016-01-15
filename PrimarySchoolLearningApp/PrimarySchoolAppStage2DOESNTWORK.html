@@ -1,0 +1,68 @@
+	<html>
+	<head>
+		<title>Primary School Learning App</title>
+	</head>
+	<style>
+	imageOnScreen.style.height = "50px";
+	imageOnScreen.style.width = "50px";
+	</style>
+	<body id ="bodyId">
+	<h1>  </h1>
+		<center><p><input type="text" id="yourNumber" /></p>
+		<p><button type="button" onclick="onclickNumber('1')">1</button>
+		<button type="button" onclick="onclickNumber('2')">2</button>
+		<button type="button" onclick="onclickNumber('3')">3</button>
+		<button type="button" onclick="onclickNumber('.')">.</button></p>
+		
+		<p><button type="button" onclick="onclickNumber('4')">4</button>
+		<button type="button" onclick="onclickNumber('5')">5</button> 
+		<button type="button" onclick="onclickNumber('6')">6</button>
+		<button type="button" onclick="onclickClear()">C</button>
+		<button type="button" onclick="onclickSubmit()">Submit</button>
+		
+		<p><button type="button" onclick="onclickNumber('7')">7</button>
+		<button type="button" onclick="onclickNumber('8')">8</button>
+		<button type="button" onclick="onclickNumber('9')">9</button>
+		<button type="button" onclick="onclickNumber('0')">0</button>
+		<button type="button" onclick="onclickBackspace('Del')">Del</button>
+			
+		<p id="result"></p>
+		</p>
+		<script type="text/javascript">
+	
+			var output = document.getElementById("result"); 
+			var input = document.getElementById("yourNumber");
+			var numberA;
+			input.disabled = true;
+			var coins = new Array("nickel","dime","quarter","loonie","toonie");
+			var imageOnScreen;
+			
+			var randomCoin = Math.floor(Math.random()*coins.length);
+			imageOnScreen = document.createElement("img");
+			imageOnScreen.src = coins[randomCoin]+".jpg";
+			document.getElementById("bodyId").appendChild(imageOnScreen);
+			
+			var dime = "dime"; 
+			dime = 0.10; 
+			
+			function onclickNumber(x) 
+			{
+				input.value += x;
+			}
+				function onclickBackspace() 
+			{
+				var textNumber = (input.value);
+				length = textNumber.length;
+				input.value = textNumber.substring(0,length - 1);
+			} 
+			
+			function onclickClear() 
+			{
+				input.value = (""); 
+			}
+			
+			
+			
+	</script>
+	</body>
+</html>
