@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<!--Kushal Pandya 
+Revision History
+8/3/14 - Added the square root function
+19/3/14 - Added function using length and substring for del (backspace) value
+25/3/14 - Added function for factorial with a while loop
+26/3/14 - Added function for a factorial with if statement and recursion
+22/4/14 - Added onclickDraw function with canvas
+23/4/14 - Added statistical function buttons
+-->
+	<style type="text/css">
+		canvas{border: 1px solid black; }
+	</style>
+	<body> <!-- All the buttons in the calculator-->
+		<p> <center><p><input type="text" id="yourNumber" /></p>
+		<p><button type="button" onclick="onclickNumber('1')">1</button>
+		<button type="button" onclick="onclickNumber('2')">2</button>
+		<button type="button" onclick="onclickNumber('3')">3</button>
+		<button type="button" onclick="onclickOperation('*')">*</button>
+		<button type="button" onclick="onclickNumber('.')">.</button></p>
+		
+		<p><button type="button" onclick="onclickNumber('4')">4</button>
+		<button type="button" onclick="onclickNumber('5')">5</button> 
+		<button type="button" onclick="onclickNumber('6')">6</button>
+		<button type="button" onclick="onclickOperation('/')">/</button>
+		
+		<button type="button" onclick="onclickOperation('^')">^</button>
+		<button type="button" onclick="onclickFibonacci('f')">f</button></p>
+		<p><button type="button" onclick="onclickNumber('7')">7</button>
+		<button type="button" onclick="onclickNumber('8')">8</button>
+		
+		<button type="button" onclick="onclickNumber('9')">9</button>
+		<button type="button" onclick="onclickOperation('+')">+</button>
+		<button type="button" onclick="onclickBackspace('Del')">Del</button>
+		<button type="button" onclick="onclickFactorialRecursion('!!')">!!</button></p>
+		<p><button type="button" onclick="onclickNumber('0')">0</button>
+		
+		<button type="button" onclick="onclickClear()">C</button>
+		<button type="button" onclick="onclickFactorialLoop('!')">!</button>
+		<button type="button" onclick="onclickOperation('-')">-</button>
+		<button type="button" onclick="onclickEqual('=')">=</button>
+		<button type="button" onclick="onclickSqrt('')">sqrt</button></p>
+		
+		<button type="button" onclick="onclickStat('n')">n</button>
+		<button type="button" onclick="onclickStat('dAvg')">dAvg</button>
+		<button type="button" onclick="onclickStat('dSum')">dSum</button>
+		<button type="button" onclick="onclickStat('dSsq')">dSsq</button>
+		<button type="button" onclick="onclickStat('dVar')">dVar</button>
+		<button type="button" onclick="onclickStat('dStdv')">dStdv</button>
+		<button type="button" onclick="onclickStat('data')">data</button><center/> 
+		<button type="button" onclick="onclickDraw('Draw')">Draw</button>
+		
+		<canvas id="myCanvas" width="400" height="400"></canvas> 
+		<p id="result"></p>
+		</p>
+		<script type="text/javascript">
+			var output = document.getElementById("result"); 
+			var input = document.getElementById("yourNumber");
+			var numberA;
+			var	numberB; 
+			var operation = "";
+			var c = document.getElementById("myCanvas");
+			var ctx = c.getContext("2d");
+			
+			input.disabled = true; //input in the input box is unavailable
+			
+			function onclickStat()
+			{
+			dataArray.push(data
+			}
+			
+			function onclickDraw() //draw function canvas
+			{
+				ctx.beginPath();
+				ctx.moveTo(0,200);
+				ctx.lineTo(400,200);
+				ctx.lineWidth = 2;
+				ctx.moveTo(200,0);
+				ctx.lineTo(200,400);
+				ctx.strokeStyle = "#000000";
+				ctx.stroke();
+				ctx.beginPath();
+				//ctx.arc(75,75,50,0, Math.PI*2,true); //circle
+				ctx.stroke();
+			}
+			
+			function onclickNumber(x) //Appending the values in the input box
+			{
+				input.value += x;
+			}
+			
+			//Updated March 25, the function for factorial with a while loop
+			function onclickFactorialLoop() 
+			{
+				var numberN = parseFloat(input.value);
+				var factorialValue = 1;
+				var indexValue = 1;
+				while (indexValue <= numberN)
+				{
+					factorialValue = factorialValue * indexValue;
+					indexValue ++;
+				}
+				input.value = factorialValue.toString();
+			} 
+			
+			//Updated March 26, function for a factorial with if statement and recursion; assigning value to same variable again
+			function onclickFactorialRecursion()
+			{
+				var numberFactorial = parseFloat(input.value);
+				input.value = factorial(numberFactorial).toString();
+			
+				function factorial(numberFactorial)
+				{
+					if (numberFactorial <= 1)
+					{
+						return 1;
+					}
+					else 
+					{
+						return numberFactorial * factorial(numberFactorial - 1);
+					}
+				}
+			} 
+
+			//Updated March 19, function using length and substring for del (backspace) value, deletes last value added to the input box
+			function onclickBackspace() 
+			{
+				var textNumber = (input.value);
+				length = textNumber.length;
+				input.value = textNumber.substring(0,length - 1);
+			} 
+			
+			function onclickClear() //this function is used to clear the input box 
+			{
+				input.value = ("");
+			}
+			
+			function onclickOperation(x) //this is the operator function in which after clicking the operation, the input is cleared
+			{ // parameter x is a string
+				operation = x;
+				numberA = parseFloat(input.value);
+				input.value = " ";
+			}
+			
+			function onclickSqrt() //The Square root function replaces the number currently in text box with its square-root
+			{				
+				var sqrtValue = parseFloat(input.value);
+				input.value = Math.sqrt(sqrtValue).toString();
+			}
+			
+			function onclickEqual() //Using an if and else if statement for determining which operation is used when clicked on "=" sign
+			{ 	
+				numberB = parseFloat(input.value); //Math operator - converts input from text box to number, saves to variable, saves operation
+
+					if (operation == "+")
+					{ 
+						input.value = (numberA + numberB).toString(); //addition of number A and number B
+					}	
+					else if (operation == "-")
+					{
+						input.value = (numberA - numberB).toString(); //subtraction of number A and number B
+					}
+					else if (operation == "*")
+					{
+						input.value = (numberA * numberB).toString(); //multiplication of number A and number B
+					}
+					else if (operation == "/")
+					{
+						input.value = (numberA / numberB).toString(); //division of number A and number B 
+					}
+					else 
+					{
+						input.value = Math.pow(numberA,numberB).toString(); //number A to the power of number B
+					}
+			}
+			
+			function onclickFibonacci()
+			{
+				var fibNumber = parseInt(input.value);
+				input.value = fibonacciNumber(fibNumber).toString();
+			}
+					function fibonacciNumber(fibNumber)
+					{
+						if (fibNumber < 0)
+						{
+							input.value = "Error";
+						}
+						else if (fibNumber == 1)
+						{
+							input.value = 1;
+						}
+						else 
+						{
+							return  fibonacciNumber(fibNumber - 1) + fibonacciNumber(fibNumber - 2);
+						}
+					}			
+				// still working on this function	
+			
+		</script>
+	</body>
+</html>
