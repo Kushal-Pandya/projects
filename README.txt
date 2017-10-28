@@ -1,1 +1,4 @@
-This repository contains all code done in ICS4U0 at Chinguacousy Secodary School.
+Primary School Learning Application 
+-------------------------------------
+•	web based application for grade 1s’ that assess their ability to count monetary values 
+
